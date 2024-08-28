@@ -2,11 +2,14 @@ import { useMemo } from "react";
 import EmptyText from "./EmptyText";
 import SortingFilter from "./SortingFilter";
 import { options } from "../lib/constants";
-import { useItemsContext } from "../lib/hooks/useItemsContext";
+import { useItemStore } from "../store/ItemStore";
 
 export default function ItemList() {
-  const { items, sortBy, setSortBy, handleDelete, handleToggleCheck } =
-    useItemsContext();
+  const items = useItemStore((state) => state.items);
+  const sortBy = useItemStore((state) => state.sortBy);
+  const setSortBy = useItemStore((state) => state.setSortBy);
+  const handleToggleCheck = useItemStore((state) => state.toggle);
+  const handleDelete = useItemStore((state) => state.delete);
 
   const sortedItems = useMemo(
     () =>

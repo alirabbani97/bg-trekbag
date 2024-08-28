@@ -1,9 +1,11 @@
+import { useItemStore } from "../store/ItemStore";
 import Button from "./Button";
-import { useItemsContext } from "../lib/hooks/useItemsContext";
 
 export default function ButtonGroup() {
-  const { handleCheckAll, handleUnCheckAll, handleReset, handleClear } =
-    useItemsContext();
+  const handleCheckAll = useItemStore((state) => state.checkAll);
+  const handleUnCheckAll = useItemStore((state) => state.unCheckAll);
+  const handleReset = useItemStore((state) => state.reset);
+  const handleClear = useItemStore((state) => state.clearItems);
 
   const btnText = [
     { text: "Check All", action: handleCheckAll },
